@@ -1,9 +1,14 @@
--- Users (password_hash is placeholder; use signup for real login)
+-- Users
+-- NOTE:
+-- - id 1~4 는 DUMMY_HASH 계정(실로그인 불가)
+-- - id 5~6 은 password=123456 으로 로그인 가능한 테스트 계정
 INSERT INTO users (id, email, password_hash, name, role, created_at, updated_at) VALUES
   (1, 'seller1@example.com', 'DUMMY_HASH', '판매자1', 'SELLER', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
   (2, 'seller2@example.com', 'DUMMY_HASH', '판매자2', 'SELLER', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
   (3, 'buyer1@example.com',  'DUMMY_HASH', '구매자1', 'BUYER',  CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-  (4, 'buyer2@example.com',  'DUMMY_HASH', '구매자2', 'BUYER',  CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+  (4, 'buyer2@example.com',  'DUMMY_HASH', '구매자2', 'BUYER',  CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+  (5, 'ssar@nate.com', '$2a$10$lOThSJw.h8pr13IgknZIB.txrkDhnYs0E5KbNfCMkzqcYM09T9v5i', 'ssar', 'BUYER', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+  (6, 'cos@nate.com',  '$2a$10$lOThSJw.h8pr13IgknZIB.txrkDhnYs0E5KbNfCMkzqcYM09T9v5i', 'cos',  'SELLER', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 -- Products
 INSERT INTO products (id, seller_id, name, description, price, stock_quantity, status, created_at, updated_at) VALUES
