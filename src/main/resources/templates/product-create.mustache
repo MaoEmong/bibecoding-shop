@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>상품 등록 - MYSHOP</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+  {{>partials/header}}
+
+  <main class="container">
+    <section class="page-head">
+      <h1>상품 등록</h1>
+      <p>판매할 상품 정보를 입력하세요.</p>
+    </section>
+
+    <section class="form-card">
+      {{#error}}
+      <div class="form-error">{{error}}</div>
+      {{/error}}
+      <form class="form-grid" method="post" action="/seller/products/new">
+        <label>
+          상품명
+          <input type="text" name="name" placeholder="상품명" />
+        </label>
+        <label>
+          가격
+          <input type="number" name="price" placeholder="0" />
+        </label>
+        <label>
+          재고
+          <input type="number" name="stockQuantity" placeholder="0" />
+        </label>
+        <label class="full">
+          설명
+          <textarea name="description" rows="5"></textarea>
+        </label>
+        <button class="btn primary" type="submit">등록</button>
+      </form>
+    </section>
+  </main>
+  {{>partials/footer}}
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>주문 완료 - MYSHOP</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+  {{>partials/header}}
+
+  <main class="container">
+    <section class="complete">
+      <div class="complete-card">
+        <div class="complete-icon">✓</div>
+        <h1>주문이 완료되었습니다</h1>
+        <p>주문번호: <strong>{{orderNo}}</strong></p>
+        <p>총 결제 금액: <strong>{{total}}원</strong></p>
+        <p>상품 수: <strong>{{itemCount}}종 · {{totalQuantity}}개</strong></p>
+        <div class="complete-actions">
+          <a class="btn primary" href="/">홈으로</a>
+          <a class="btn ghost" href="/orders">주문 내역</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="order">
+      <div class="order-list">
+        {{#items}}
+        <div class="order-item">
+          <div class="order-name"><a href="/products/{{productId}}">{{name}}</a></div>
+          <div class="order-meta">{{price}}원 · 수량 {{quantity}}</div>
+          <div class="order-subtotal">{{subtotal}}원</div>
+        </div>
+        {{/items}}
+      </div>
+    </section>
+  </main>
+  {{>partials/footer}}
+</body>
+</html>

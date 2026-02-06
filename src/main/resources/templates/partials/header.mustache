@@ -1,0 +1,36 @@
+<header class="site-header">
+  <div class="brand">
+    <a href="/">MYSHOP</a>
+  </div>
+  {{#alert}}
+  <script>
+    alert("{{alert}}");
+  </script>
+  {{/alert}}
+  <nav class="nav-links">
+    <a href="/products">상품</a>
+
+    {{#buyer}}
+    <span class="nav-group">구매자</span>
+    <a href="/cart">장바구니</a>
+    <a href="/orders">주문내역</a>
+    <a href="/mypage">마이페이지</a>
+    {{/buyer}}
+
+    {{#seller}}
+    <span class="nav-group">판매자</span>
+    <a href="/seller/products/new">상품등록</a>
+    <a href="/seller/orders">주문관리</a>
+    <a href="/mypage">마이페이지</a>
+    {{/seller}}
+
+    {{^loggedIn}}
+    <a href="/login">로그인</a>
+    <a href="/signup">회원가입</a>
+    {{/loggedIn}}
+
+    {{#loggedIn}}
+    <a href="/logout">로그아웃</a>
+    {{/loggedIn}}
+  </nav>
+</header>

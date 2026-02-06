@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>장바구니 - MYSHOP</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+  {{>partials/header}}
+
+  <main class="container">
+    <section class="page-head">
+      <h1>장바구니</h1>
+      <p>담아둔 상품을 확인하세요.</p>
+    </section>
+
+    <section class="cart">
+      <div class="cart-list">
+        {{#items}}
+        <div class="cart-item">
+          <div class="cart-thumb"></div>
+          <div class="cart-info">
+            <div class="cart-name">{{name}}</div>
+            <div class="cart-meta">{{price}}원 · 수량 {{quantity}}</div>
+          </div>
+          <div class="cart-subtotal">{{subtotal}}원</div>
+          <form method="post" action="/cart/items/{{id}}/quantity">
+            <input type="number" name="quantity" min="1" max="{{stock}}" value="{{quantity}}" />
+            <button class="btn ghost small" type="submit">수량 변경</button>
+          </form>
+          <form method="post" action="/cart/items/{{id}}/delete">
+            <button class="btn ghost small" type="submit">삭제</button>
+          </form>
+        </div>
+        {{/items}}
+        {{^items}}
+        <div class="empty">장바구니가 비어 있습니다.</div>
+        {{/items}}
+      </div>
+
+      <aside class="cart-summary">
+        <div class="summary-title">결제 요약</div>
+        <div class="summary-row">
+          <span>총 상품 금액</span>
+          <strong>{{total}}원</strong>
+        </div>
+        <a class="btn primary" href="/order">주문하기</a>
+      </aside>
+    </section>
+  </main>
+  {{>partials/footer}}
+</body>
+</html>

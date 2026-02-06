@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MYSHOP</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+  {{>partials/header}}
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-text">
+        <h1>심플한 쇼핑몰, 바이브코딩 MVP</h1>
+        <p>빠르게 탐색하고, 간단하게 구매하세요.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="/products">상품 보기</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="card-title">오늘의 추천</div>
+        <div class="card-list">
+          {{#products}}
+          <div class="card-item">
+            <div class="card-name">{{name}}</div>
+            <div class="card-price">{{price}}원</div>
+            {{#badge}}<span class="badge">{{badge}}</span>{{/badge}}
+          </div>
+          {{/products}}
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <h2>상품 미리보기</h2>
+      <div class="grid-list">
+        {{#products}}
+        <div class="product">
+          <div class="thumb"></div>
+          <div class="product-name">{{name}}</div>
+          <div class="product-price">{{price}}원</div>
+        </div>
+        {{/products}}
+      </div>
+    </section>
+  </main>
+  {{>partials/footer}}
+</body>
+</html>

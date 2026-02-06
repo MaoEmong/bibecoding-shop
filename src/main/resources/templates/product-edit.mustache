@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>상품 수정 - MYSHOP</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+  {{>partials/header}}
+
+  <main class="container">
+    <section class="page-head">
+      <h1>상품 수정</h1>
+      <p>상품 정보를 수정하세요.</p>
+    </section>
+
+    <section class="form-card">
+      {{#error}}
+      <div class="form-error">{{error}}</div>
+      {{/error}}
+      <form class="form-grid" method="post" action="/seller/products/{{id}}/edit">
+        <label>
+          상품명
+          <input type="text" name="name" value="{{name}}" />
+        </label>
+        <label>
+          가격
+          <input type="number" name="price" value="{{price}}" />
+        </label>
+        <label>
+          재고
+          <input type="number" name="stockQuantity" value="{{stock}}" />
+        </label>
+        <label class="full">
+          설명
+          <textarea name="description" rows="5">{{description}}</textarea>
+        </label>
+        <div class="form-actions full">
+          <button class="btn primary" type="submit">저장</button>
+          <a class="btn ghost" href="/seller/products">취소</a>
+        </div>
+      </form>
+    </section>
+  </main>
+  {{>partials/footer}}
+</body>
+</html>

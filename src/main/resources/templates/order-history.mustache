@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>주문 내역 - MYSHOP</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+  {{>partials/header}}
+
+  <main class="container">
+    <section class="page-head">
+      <h1>주문 내역</h1>
+      <p>최근 주문 내역을 확인하세요.</p>
+    </section>
+
+    <section class="orders">
+      {{#orders}}
+      <div class="order-card">
+        <div class="order-no"><a href="/orders/{{id}}">{{orderNo}}</a></div>
+        <div class="order-status">{{status}}</div>
+        <div class="order-total">{{total}}원</div>
+        <div class="order-items">
+          {{#items}}
+          <div class="order-item">
+            <a href="/products/{{productId}}">{{name}}</a>
+            <span>· {{quantity}}개</span>
+          </div>
+          {{/items}}
+        </div>
+      </div>
+      {{/orders}}
+      {{^orders}}
+      <div class="empty">주문 내역이 없습니다.</div>
+      {{/orders}}
+    </section>
+  </main>
+  {{>partials/footer}}
+</body>
+</html>

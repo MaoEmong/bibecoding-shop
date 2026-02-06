@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>마이페이지 - MYSHOP</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+  {{>partials/header}}
+
+  <main class="container">
+    <section class="page-head">
+      <h1>마이페이지</h1>
+      <p>{{userName}} 님 ({{role}})</p>
+    </section>
+
+    <section class="mypage">
+      {{#menus}}
+      <a class="mypage-card" href="{{href}}">
+        <div class="mypage-title">{{label}}</div>
+        <div class="mypage-desc">바로가기</div>
+      </a>
+      {{/menus}}
+    </section>
+  </main>
+  {{>partials/footer}}
+</body>
+</html>

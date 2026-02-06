@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>판매자 주문 관리 - MYSHOP</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+  {{>partials/header}}
+
+  <main class="container">
+    <section class="page-head">
+      <h1>판매자 주문 관리</h1>
+      <p>주문 상태를 관리하세요.</p>
+    </section>
+
+    <section class="orders">
+      {{#orders}}
+      <div class="order-card">
+        <div class="order-no">{{orderNo}}</div>
+        <div class="order-status">{{status}}</div>
+        <div class="order-total">{{total}}원</div>
+        <div class="order-buyer">구매자: {{buyer}}</div>
+        <div class="order-actions">
+          <form method="post" action="/seller/orders/{{id}}/status">
+            <input type="hidden" name="status" value="READY_TO_SHIP" />
+            <button class="btn ghost small" type="submit">배송 준비</button>
+          </form>
+          <form method="post" action="/seller/orders/{{id}}/status">
+            <input type="hidden" name="status" value="SHIPPING" />
+            <button class="btn ghost small" type="submit">배송 중</button>
+          </form>
+          <form method="post" action="/seller/orders/{{id}}/status">
+            <input type="hidden" name="status" value="DELIVERED" />
+            <button class="btn ghost small" type="submit">배송 완료</button>
+          </form>
+        </div>
+      </div>
+      {{/orders}}
+      {{^orders}}
+      <div class="empty">처리할 주문이 없습니다.</div>
+      {{/orders}}
+    </section>
+  </main>
+  {{>partials/footer}}
+</body>
+</html>

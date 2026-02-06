@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{name}} - MYSHOP</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+  {{>partials/header}}
+
+  <main class="container">
+    <section class="detail">
+      <div class="detail-thumb"></div>
+      <div class="detail-info">
+        <h1>{{name}}</h1>
+        <div class="detail-price">{{price}}원</div>
+        <div class="detail-stock">재고 {{stock}}개</div>
+        <p class="detail-desc">{{description}}</p>
+        <div class="detail-actions">
+          {{^seller}}
+          <form method="post" action="/cart/items">
+            <input type="hidden" name="productId" value="{{id}}" />
+            <input type="number" name="quantity" min="1" max="{{stock}}" value="1" />
+            <button class="btn primary" type="submit">장바구니 담기</button>
+          </form>
+          {{/seller}}
+          {{#seller}}
+          <button class="btn ghost" type="button" disabled>판매자는 구매할 수 없습니다</button>
+          {{/seller}}
+          <a class="btn ghost" href="/products">목록으로</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{>partials/footer}}
+</body>
+</html>

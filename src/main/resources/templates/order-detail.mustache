@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>주문 상세 - MYSHOP</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+  {{>partials/header}}
+
+  <main class="container">
+    <section class="page-head">
+      <h1>주문 상세</h1>
+      <p>주문 정보를 확인하세요.</p>
+    </section>
+
+    <section class="order">
+      <div class="order-list">
+        <div class="order-item">
+          <div class="order-name">주문번호: {{orderNo}}</div>
+          <div class="order-meta">상태: {{status}}</div>
+          <div class="order-meta">주문일시: {{createdAt}}</div>
+          <div class="order-meta">상품 수: {{itemCount}}종 · 총 {{totalQuantity}}개</div>
+          <div class="order-subtotal">총 결제 금액 {{total}}원</div>
+        </div>
+
+        {{#items}}
+        <div class="order-item">
+          <div class="order-name"><a href="/products/{{productId}}">{{name}}</a></div>
+          <div class="order-meta">{{price}}원 · 수량 {{quantity}}</div>
+          <div class="order-subtotal">{{subtotal}}원</div>
+        </div>
+        {{/items}}
+      </div>
+
+      <aside class="order-summary">
+        <div class="summary-title">결제 요약</div>
+        <div class="summary-row">
+          <span>총 결제 금액</span>
+          <strong>{{total}}원</strong>
+        </div>
+        <a class="btn ghost" href="/orders">주문 내역</a>
+      </aside>
+    </section>
+  </main>
+  {{>partials/footer}}
+</body>
+</html>

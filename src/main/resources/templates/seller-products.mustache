@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>판매자 상품 관리 - MYSHOP</title>
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+  {{>partials/header}}
+
+  <main class="container">
+    <section class="page-head">
+      <h1>판매자 상품 관리</h1>
+      <p>등록한 상품을 관리하세요.</p>
+      <a class="btn primary" href="/seller/products/new">상품 등록</a>
+    </section>
+
+    {{#error}}
+    <div class="form-error">{{error}}</div>
+    {{/error}}
+
+    <section class="orders">
+      {{#products}}
+      <div class="order-card">
+        <div class="order-no">{{name}}</div>
+        <div class="order-status">상태: {{status}}</div>
+        <div class="order-total">가격: {{price}}원</div>
+        <div class="order-buyer">재고: {{stock}}개</div>
+        <div class="order-actions">
+          <a class="btn ghost small" href="/seller/products/{{id}}/edit">수정</a>
+          <form method="post" action="/seller/products/{{id}}/delete">
+            <button class="btn ghost small" type="submit">삭제</button>
+          </form>
+        </div>
+      </div>
+      {{/products}}
+      {{^products}}
+      <div class="empty">등록된 상품이 없습니다.</div>
+      {{/products}}
+    </section>
+  </main>
+  {{>partials/footer}}
+</body>
+</html>
