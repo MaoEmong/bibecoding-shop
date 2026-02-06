@@ -1,11 +1,11 @@
-﻿# MYSHOP (포트폴리오용 쇼핑몰 MVP)
+﻿# MYSHOP (쇼핑몰 MVP)
 
 Spring Boot 기반으로 구현한 한국어 쇼핑몰 웹 애플리케이션입니다.  
 판매자/구매자 역할을 분리해 상품 조회, 장바구니, 주문, 판매자 주문 처리까지의 핵심 흐름(MVP)을 구현했습니다.
 
 ## 1. 프로젝트 목적과 범위
 
-- 목적: 포트폴리오 제출을 위한 쇼핑몰 서비스 MVP 구현
+- 목적: 간단한 쇼핑몰 서비스 MVP 구현
 - 구현 범위:
   - 인증(회원가입/로그인/로그아웃)
   - 상품(목록/상세/판매자 등록/수정/삭제)
@@ -14,6 +14,7 @@ Spring Boot 기반으로 구현한 한국어 쇼핑몰 웹 애플리케이션입
 - 언어/문서 기준: 한국어
 
 관련 문서:
+
 - 요구사항: `.docs/requirements.md`
 - 기능 우선순위: `.docs/features.md`
 - 화면/흐름: `.docs/ui-flow.md`
@@ -82,11 +83,13 @@ macOS/Linux:
 ```
 
 접속 주소:
+
 - 홈: `http://localhost:8080/`
 - 상품 목록: `http://localhost:8080/products`
 - H2 콘솔: `http://localhost:8080/h2-console`
 
 H2 콘솔 접속 정보:
+
 - JDBC URL: `jdbc:h2:mem:myproject;MODE=MYSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE`
 - Username: `sa`
 - Password: (빈 값)
@@ -98,6 +101,7 @@ H2 콘솔 접속 정보:
 ```
 
 테스트 리포트:
+
 - `build/reports/tests/test/index.html`
 
 ## 5. 프로젝트 구조
@@ -167,10 +171,12 @@ src/main/resources
 - 로그아웃 시 세션 무효화
 
 세션 키:
+
 - `USER_ID`
 - `LAST_ORDER_ID`
 
 관련 파일:
+
 - `src/main/java/com/example/myproject/common/SessionUtil.java`
 - `src/main/java/com/example/myproject/user/AuthController.java`
 - `src/main/java/com/example/myproject/user/AuthPageController.java`
@@ -187,6 +193,7 @@ src/main/resources
   - SELLER 페이지: `/seller/**`
 
 관련 파일:
+
 - `src/main/java/com/example/myproject/config/WebConfig.java`
 - `src/main/java/com/example/myproject/common/AuthInterceptor.java`
 - `src/main/java/com/example/myproject/common/RoleInterceptor.java`
@@ -276,6 +283,7 @@ src/main/resources
 ## 10. 화면 라우트 맵
 
 공통 페이지:
+
 - `/`
 - `/products`
 - `/products/{id}`
@@ -285,6 +293,7 @@ src/main/resources
 - `/mypage`
 
 구매자 페이지:
+
 - `/cart`
 - `/order`
 - `/order/complete`
@@ -292,6 +301,7 @@ src/main/resources
 - `/orders/{id}`
 
 판매자 페이지:
+
 - `/seller/products`
 - `/seller/products/new`
 - `/seller/products/{id}/edit`
@@ -325,11 +335,13 @@ src/main/resources
 ## 12. 테스트 전략과 현재 테스트
 
 문서 기준 테스트 전략:
+
 - 단위 테스트: 도메인/서비스 규칙
 - 통합 테스트: 컨트롤러 + 서비스 + DB
 - 인수 시나리오 테스트: 핵심 플로우
 
 현재 구현된 테스트:
+
 - `ApiIntegrationTests#mvpFlowServices`
   - 판매자/구매자 생성
   - 상품 생성
@@ -339,6 +351,7 @@ src/main/resources
 - `MyprojectApplicationTests#contextLoads`
 
 추가 권장:
+
 - 권한 위반 케이스 테스트
 - 재고 부족/없는 리소스 에러 테스트
 - API 응답 포맷 정합성 테스트
@@ -364,6 +377,7 @@ src/main/resources
 - `spring.h2.console.enabled=true`
 
 의미:
+
 - 앱 실행 시 스키마 업데이트 + `data.sql` 초기 데이터 적재
 - OSIV 비활성화로 Lazy 로딩 관련 실수 방지(필요 조회는 fetch join으로 처리)
 
@@ -376,6 +390,7 @@ src/main/resources
   - `IllegalStateException` -> `401 UNAUTHORIZED`
 
 역할 인터셉터 API 응답:
+
 - 미인증: `401`, 코드 `UNAUTHORIZED`
 - 권한 없음: `403`, 코드 `FORBIDDEN`
 
@@ -384,6 +399,7 @@ src/main/resources
 상세는 `.docs/risk-review.md` 참고.
 
 핵심 요약:
+
 - 판매자 주문 상태 변경 시 주문 소유 검증 보강 필요
 - API 문서와 실제 응답 포맷 일부 불일치
 - 문서의 인증 방식(토큰 예시)과 실제 구현(세션) 차이
@@ -407,5 +423,6 @@ src/main/resources
 ---
 
 온보딩 기준:
+
 - 문서 먼저: `.docs/README.md` -> `.docs/requirements.md` -> `.docs/features.md`
 - 코드 시작점: `WebConfig`, `AuthController`, `ProductService`, `CartService`, `OrderService`
